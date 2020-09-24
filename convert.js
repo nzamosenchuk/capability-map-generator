@@ -91,6 +91,46 @@ function removeParentReference(jsonObj) {
     }
 }
 
+function extractBadges(jsonObj) {
+    var regExp = /\(([^)]+)\)/;
+
+    if( jsonObj !== null && typeof jsonObj == "object" ) {
+        if (jsonObj.header){
+            var matches = regExp.exec(jsonObj.header);
+            if (matches){
+                console.log('Found badge in parenteces: ', jsonObj.header);
+                jsonObj.badge = matches[1]
+                jsonObj.header = jsonObj.header.substring(0, matches.index)
+            }
+            //matches[1] contains the value between the parentheses
+            
+        }
+        Object.entries(jsonObj).forEach(([key, value]) => {
+            extractBadges(value);
+        });
+    }
+}
+
+
+// ===== converter function =====
+function convert(filename){
+    const liner = new lineByLine(filename)
+    let model = parseMD(liner, {parent: null, child:[], description:"", level:0} , 0)
+    removeParentReference(model)
+    extractBadges(model)
+    let htmlTemaplate = fs.readFileSync('index.template.html',{ encoding: 'utf8' });
+    
+    var template = hb.compile(htmlTemaplate);
+    var result = template(model);
+    
+    fs.writeFile('index.html', result, function (err) {
+        if (err) return console.log(err);
+        console.log('Generated: index.html');
+    });
+    fs.writeFile('model.json', JSON.stringify(model.child), function (err) {
+        if (err) return console.log(err);
+    });
+}
 
 // ===== actual converter =====
 var appArgs = process.argv.slice(2);
@@ -98,19 +138,16 @@ if (!appArgs || appArgs.length == 0){
     console.error("Usage: > node convert.js name-of-md-file.md")
     process.exit(1)
 }
-const liner = new lineByLine(appArgs[0])
-let model = parseMD(liner, {parent: null, child:[], description:"", level:0} , 0)
-removeParentReference(model)
+const filename = appArgs[0]
+convert(filename)
 
-let htmlTemaplate = fs.readFileSync('index.template.html',{ encoding: 'utf8' });
+if (appArgs.length>1 && appArgs[1]=='--watch'){
+    const fs = require('fs');
 
-var template = hb.compile(htmlTemaplate);
-var result = template(model);
-
-fs.writeFile('index.html', result, function (err) {
-    if (err) return console.log(err);
-    console.log('Generated: index.html');
-});
-fs.writeFile('model.json', JSON.stringify(model.child), function (err) {
-    if (err) return console.log(err);
-});
+fs.watch(filename, { encoding: 'buffer' }, (eventType, filename) => {
+    if (filename) {
+      console.log('rebuilding ... ');
+      convert(filename)
+    }
+  });
+}

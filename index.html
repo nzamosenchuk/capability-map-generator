@@ -5,30 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="https://bootswatch.com/4/journal/bootstrap.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <!-- <link href="https://bootswatch.com/4/journal/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="https://bootswatch.com/4/simplex/bootstrap.min.css" rel="stylesheet">
+    <style>
+      .popover-body p:last-child {
+        margin-bottom: 0
+      }
+    </style>
   </head>
 
   <body>
     <div class="container-fluid">
-    <div class="row  flex-row flex-nowrap d-inline-flex"> 
+    <div class="row  flex-row flex-nowrap d-inline-flex p-2"> 
     <!-- Root Capability Domain -->
     <div class="card bg-primary text-white m-1" style="width: 18rem;">
       <div class="card-body">
-        <h2 class="card-title text-center text-wrap">Root category capability 1</h2>
+        
+        <h2 class="card-title text-center text-wrap" data-toggle="popover" data-placement="bottom" data-content="">
+          Business
+        </h2>
 
         <!-- Capability Group -->
-        <div class="card text-dark mb-3" >
-          <div class="card-header">
-            <strong>Capability group 1 1</strong>
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>IT Finance  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
           </div>
           <ul class="list-group list-group-flush">
-            <!-- Capability -->
-            <li class="list-group-item">Capability 1 1 1</li>
-            <!-- Capability -->
-            <li class="list-group-item">Capability 1 1 2</li>
+          </ul>
+        </div>
+        <!-- Capability Group -->
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>IT Strategy  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
+          </div>
+          <ul class="list-group list-group-flush">
+          </ul>
+        </div>
+        <!-- Capability Group -->
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>Benefits Realisation  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
+          </div>
+          <ul class="list-group list-group-flush">
+          </ul>
+        </div>
+        <!-- Capability Group -->
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>Business Risk Management  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
+          </div>
+          <ul class="list-group list-group-flush">
           </ul>
         </div>
       </div>
@@ -36,16 +70,59 @@
     <!-- Root Capability Domain -->
     <div class="card bg-primary text-white m-1" style="width: 18rem;">
       <div class="card-body">
-        <h2 class="card-title text-center text-wrap">Root category capability 2</h2>
+        
+        <h2 class="card-title text-center text-wrap" data-toggle="popover" data-placement="bottom" data-content="">
+          People
+        </h2>
 
         <!-- Capability Group -->
-        <div class="card text-dark mb-3" >
-          <div class="card-header">
-            <strong>Capability group 2 1</strong>
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>Resource Manamgent  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
           </div>
           <ul class="list-group list-group-flush">
-            <!-- Capability -->
-            <li class="list-group-item">Capability 2 1 1</li>
+          </ul>
+        </div>
+        <!-- Capability Group -->
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>Incentive Manamgent  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
+          </div>
+          <ul class="list-group list-group-flush">
+          </ul>
+        </div>
+        <!-- Capability Group -->
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>Career Management  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
+          </div>
+          <ul class="list-group list-group-flush">
+          </ul>
+        </div>
+        <!-- Capability Group -->
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>Training Manamgement  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
+          </div>
+          <ul class="list-group list-group-flush">
+          </ul>
+        </div>
+        <!-- Capability Group -->
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>Organizational Change Management  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
+          </div>
+          <ul class="list-group list-group-flush">
           </ul>
         </div>
       </div>
@@ -53,57 +130,284 @@
     <!-- Root Capability Domain -->
     <div class="card bg-primary text-white m-1" style="width: 18rem;">
       <div class="card-body">
-        <h2 class="card-title text-center text-wrap">Root category capability 3</h2>
+        
+        <h2 class="card-title text-center text-wrap" data-toggle="popover" data-placement="bottom" data-content="">
+          Governance
+        </h2>
 
         <!-- Capability Group -->
-        <div class="card text-dark mb-3" >
-          <div class="card-header">
-            <strong>Capability group 3 1</strong>
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>Portfolio Management  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
           </div>
           <ul class="list-group list-group-flush">
-            <!-- Capability -->
-            <li class="list-group-item">Capability 3 1 1</li>
-            <!-- Capability -->
-            <li class="list-group-item">Capability 3 1 2</li>
           </ul>
         </div>
         <!-- Capability Group -->
-        <div class="card text-dark mb-3" >
-          <div class="card-header">
-            <strong>Capability group 3 2</strong>
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>Program and Project Management  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
           </div>
           <ul class="list-group list-group-flush">
-            <!-- Capability -->
-            <li class="list-group-item">Capability 3 2 1</li>
-            <!-- Capability -->
-            <li class="list-group-item">Capability 3 2 2</li>
+          </ul>
+        </div>
+        <!-- Capability Group -->
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>Business Performance Measurement  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
+          </div>
+          <ul class="list-group list-group-flush">
+          </ul>
+        </div>
+        <!-- Capability Group -->
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>License Mangement  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
+          </div>
+          <ul class="list-group list-group-flush">
           </ul>
         </div>
       </div>
     </div> <!-- main category -->
-   
+    <!-- Root Capability Domain -->
+    <div class="card bg-primary text-white m-1" style="width: 18rem;">
+      <div class="card-body">
+        
+        <h2 class="card-title text-center text-wrap" data-toggle="popover" data-placement="bottom" data-content="">
+          Platform
+        </h2>
+
+        <!-- Capability Group -->
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>Compute Provisioning  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
+          </div>
+          <ul class="list-group list-group-flush">
+          </ul>
+        </div>
+        <!-- Capability Group -->
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>Network Provisioning  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
+          </div>
+          <ul class="list-group list-group-flush">
+          </ul>
+        </div>
+        <!-- Capability Group -->
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>Storage Provisioning  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
+          </div>
+          <ul class="list-group list-group-flush">
+          </ul>
+        </div>
+        <!-- Capability Group -->
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>Database Provisioning  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
+          </div>
+          <ul class="list-group list-group-flush">
+          </ul>
+        </div>
+        <!-- Capability Group -->
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>Systems and Solutions Architecture  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
+          </div>
+          <ul class="list-group list-group-flush">
+          </ul>
+        </div>
+        <!-- Capability Group -->
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>Application Development  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
+          </div>
+          <ul class="list-group list-group-flush">
+          </ul>
+        </div>
+      </div>
+    </div> <!-- main category -->
+    <!-- Root Capability Domain -->
+    <div class="card bg-primary text-white m-1" style="width: 18rem;">
+      <div class="card-body">
+        
+        <h2 class="card-title text-center text-wrap" data-toggle="popover" data-placement="bottom" data-content="">
+          Security
+        </h2>
+
+        <!-- Capability Group -->
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>Identity and Access Management  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
+          </div>
+          <ul class="list-group list-group-flush">
+          </ul>
+        </div>
+        <!-- Capability Group -->
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>Detectiv Control  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
+          </div>
+          <ul class="list-group list-group-flush">
+          </ul>
+        </div>
+        <!-- Capability Group -->
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>Infrastructure Security  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
+          </div>
+          <ul class="list-group list-group-flush">
+          </ul>
+        </div>
+        <!-- Capability Group -->
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>Data Protection  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
+          </div>
+          <ul class="list-group list-group-flush">
+          </ul>
+        </div>
+        <!-- Capability Group -->
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>Incident Response  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
+          </div>
+          <ul class="list-group list-group-flush">
+          </ul>
+        </div>
+      </div>
+    </div> <!-- main category -->
+    <!-- Root Capability Domain -->
+    <div class="card bg-primary text-white m-1" style="width: 18rem;">
+      <div class="card-body">
+        
+        <h2 class="card-title text-center text-wrap" data-toggle="popover" data-placement="bottom" data-content="">
+          Operations
+        </h2>
+
+        <!-- Capability Group -->
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>Service Monitoring  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
+          </div>
+          <ul class="list-group list-group-flush">
+          </ul>
+        </div>
+        <!-- Capability Group -->
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>Application Performance Monitoring  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
+          </div>
+          <ul class="list-group list-group-flush">
+          </ul>
+        </div>
+        <!-- Capability Group -->
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>Resource Inventory Management  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
+          </div>
+          <ul class="list-group list-group-flush">
+          </ul>
+        </div>
+        <!-- Capability Group -->
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>Release Management / Change Management  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
+          </div>
+          <ul class="list-group list-group-flush">
+          </ul>
+        </div>
+        <!-- Capability Group -->
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>Reporting and Analytics  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
+          </div>
+          <ul class="list-group list-group-flush">
+          </ul>
+        </div>
+        <!-- Capability Group -->
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>Business Continuinity / Disaster Recovery  
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
+          </div>
+          <ul class="list-group list-group-flush">
+          </ul>
+        </div>
+        <!-- Capability Group -->
+        <div class="card text-dark mb-2" >
+          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="">
+            <strong>IT Service Catalog    
+              <span class="badge badge-pill badge-danger">CAF</span>
+            </strong>
+          </div>
+          <ul class="list-group list-group-flush">
+          </ul>
+        </div>
+      </div>
+    </div> <!-- main category -->
 
     </div> <!-- row -->
 
+    
     </div> <!-- container -->
-
-
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="../../../../assets/js/vendor/popper.min.js"></script>
-    <script src="../../../../dist/js/bootstrap.min.js"></script>
-    <script src="../../../../assets/js/vendor/holder.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <script>
-      Holder.addTheme('thumb', {
-        bg: '#55595c',
-        fg: '#eceeef',
-        text: 'Thumbnail'
-      });
+      $(function () {
+        $('[data-toggle="popover"]').popover({
+          html:true
+        })
+      })
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
     </script>
   </body>
 </html>

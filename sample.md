@@ -12,7 +12,6 @@ Capability descript
 Capability descript 1 1 3
 
 
-
 # Root category capability 2
 Root category description
 ## Capability group 2 1
