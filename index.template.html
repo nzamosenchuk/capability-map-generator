@@ -30,7 +30,7 @@
         <!-- Capability Group -->
         <div class="card text-dark mb-2" >
           <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="{{this.description}}">
-            <strong>{{this.header}} 
+            <strong>{{{this.header}}} 
               {{#if this.badge}}
               <span class="badge badge-pill badge-danger">{{this.badge}}</span>
               {{/if}}
@@ -39,7 +39,7 @@
           <ul class="list-group list-group-flush">
             {{#each this.child}}
             <!-- Capability -->
-            <li class="list-group-item" data-toggle="popover" data-placement="bottom" data-content="{{this.description}}">{{this.header}}</li>
+            <li class="list-group-item" data-toggle="popover" data-placement="bottom" data-content="{{this.description}}">{{{this.header}}}</li>
             {{/each}}
           </ul>
         </div>

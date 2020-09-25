@@ -15,7 +15,10 @@ function isH1(txt) {
     regex = /^# (.*$)/gim
     return txt.match(regex)? txt.replace(regex, '$1') : undefined
 }
-
+function isQuote(txt){
+    regex = /^\> (.*$)/gim
+    return txt.match(regex)? txt.replace(regex, '$1') : undefined
+}
 
 function findParent(currentParent, currentLevel, desiredLevel){
     if (currentLevel < desiredLevel){
@@ -36,6 +39,7 @@ function parseMD(liner,  parent, level){
     let line = liner.next()
     if (line) {
         line = line.toString()
+        line = applyTypographyStylesToRawText (line)
         let value
         if (value = isH3(line)) {
             let myParent = findParent(parent, level, 2)
@@ -74,7 +78,8 @@ function parseMD(liner,  parent, level){
             myParent.child.push(me)
             parseMD(liner, me, 1)
         } else {
-            if (line.trim().length > 0){
+            line = line.trim()
+            if (line.length > 0){
                 parent.description = parent.description.concat('<p>'+line+'</p>')
             }
             parseMD(liner, parent, level)
@@ -91,6 +96,14 @@ function removeParentReference(jsonObj) {
     }
 }
 
+function applyTypographyStylesToRawText(markdownText){
+    return markdownText
+    .replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>')
+    .replace(/\*(.*)\*/gim, '<em>$1</em>')
+    .replace(/\~(.*)\~/gim, '<del>$1</del>')
+    .replace(/!\[(.*?)\]\((.*?)\)/gim, "<img alt='$1' src='$2' />")
+    .replace(/\[(.*?)\]\((.*?)\)/gim, "<a href='$2'>$1</a>")
+}
 function extractBadges(jsonObj) {
     var regExp = /\(([^)]+)\)/;
 
@@ -100,7 +113,7 @@ function extractBadges(jsonObj) {
             if (matches){
                 console.log('Found badge in parenteces: ', jsonObj.header);
                 jsonObj.badge = matches[1]
-                jsonObj.header = jsonObj.header.substring(0, matches.index)
+                jsonObj.header = jsonObj.header.replace(`(${matches[1]})`,'')
             }
             //matches[1] contains the value between the parentheses
             
