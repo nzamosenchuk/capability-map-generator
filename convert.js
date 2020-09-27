@@ -2,6 +2,16 @@ const lineByLine = require('n-readlines')
 const hb = require('handlebars')
 const fs = require('fs');
 
+hb.registerHelper('switch', function(value, options) {
+    this.switch_value = value;
+    return options.fn(this);
+});
+
+hb.registerHelper('case', function(value, options) {
+    if (value == this.switch_value) {
+        return options.fn(this);
+    }
+});
 
 function isH3(txt) {
     regex = /^### (.*$)/gim
@@ -104,6 +114,10 @@ function applyTypographyStylesToRawText(markdownText){
     .replace(/!\[(.*?)\]\((.*?)\)/gim, "<img alt='$1' src='$2' />")
     .replace(/\[(.*?)\]\((.*?)\)/gim, "<a href='$2'>$1</a>")
 }
+function hashCode(str){
+    let hash = Array.from(str).reduce((s, c) => Math.imul(31, s) + c.charCodeAt(0) | 0, 0)
+    return Math.abs(hash % 17 % 4);              
+}
 function extractBadges(jsonObj) {
     var regExp = /\(([^)]+)\)/;
 
@@ -111,8 +125,9 @@ function extractBadges(jsonObj) {
         if (jsonObj.header){
             var matches = regExp.exec(jsonObj.header);
             if (matches){
-                console.log('Found badge in parenteces: ', jsonObj.header);
+                // console.log('Found badge in parenteces: ', jsonObj.header);
                 jsonObj.badge = matches[1]
+                jsonObj.badgeCategory = hashCode(jsonObj.badge)
                 jsonObj.header = jsonObj.header.replace(`(${matches[1]})`,'')
             }
             //matches[1] contains the value between the parentheses
@@ -136,12 +151,13 @@ function convert(filename){
     var template = hb.compile(htmlTemaplate);
     var result = template(model);
     
+    fs.writeFile('model.json', JSON.stringify(model.child), function (err) {
+        if (err) return console.log(err);
+    });
+
     fs.writeFile('index.html', result, function (err) {
         if (err) return console.log(err);
         console.log('Generated: index.html');
-    });
-    fs.writeFile('model.json', JSON.stringify(model.child), function (err) {
-        if (err) return console.log(err);
     });
 }
 
@@ -160,7 +176,11 @@ if (appArgs.length>1 && appArgs[1]=='--watch'){
 fs.watch(filename, { encoding: 'buffer' }, (eventType, filename) => {
     if (filename) {
       console.log('rebuilding ... ');
-      convert(filename)
+      try{
+          convert(filename)
+        } catch(err){
+            console.log(err)
+        }
     }
   });
 }

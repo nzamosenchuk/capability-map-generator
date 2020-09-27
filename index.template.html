@@ -11,6 +11,14 @@
       .popover-body p:last-child {
         margin-bottom: 0
       }
+      .popover {
+        box-shadow: 0 0 40px 0 rgba(0,0,0,0.5);
+      }
+      .help {cursor: help;}
+      .card-top-capability {
+        align-self: flex-start;
+        width: 18rem;
+      }
     </style>
   </head>
 
@@ -19,20 +27,34 @@
     <div class="row  flex-row flex-nowrap d-inline-flex p-2"> 
     {{#each child}}
     <!-- Root Capability Domain -->
-    <div class="card bg-primary text-white m-1" style="width: 18rem;">
+    <div class="card bg-dark text-white m-1 card-top-capability">
       <div class="card-body">
         
-        <h2 class="card-title text-center text-wrap" data-toggle="popover" data-placement="bottom" data-content="{{this.description}}">
-          {{this.header}}
+        <h2 class="card-title text-center text-wrap {{#if this.description}}help{{/if}}" data-toggle="popover" data-placement="bottom" data-content="{{this.description}}">
+          {{this.header}}  {{#if this.badge}}
+          <span class="badge badge-pill 
+            {{#switch this.badgeCategory}} 
+              {{#case '0'}} badge-primary {{/case}} 
+              {{#case '1'}} badge-warning {{/case}} 
+              {{#case '2'}} badge-danger {{/case}} 
+              {{#case '3'}} badge-info {{/case}} 
+            {{/switch}}">{{this.badge}}</span>
+          {{/if}}
         </h2>
 
         {{#each this.child}}
         <!-- Capability Group -->
         <div class="card text-dark mb-2" >
-          <div class="card-header" data-toggle="popover" data-placement="bottom" data-content="{{this.description}}">
+          <div class="card-header {{#if this.description}}help{{/if}}" data-toggle="popover" data-placement="bottom" data-content="{{this.description}}">
             <strong>{{{this.header}}} 
               {{#if this.badge}}
-              <span class="badge badge-pill badge-danger">{{this.badge}}</span>
+              <span class="badge badge-pill 
+                {{#switch this.badgeCategory}} 
+                  {{#case '0'}} badge-primary {{/case}} 
+                  {{#case '1'}} badge-warning {{/case}} 
+                  {{#case '2'}} badge-danger {{/case}} 
+                  {{#case '3'}} badge-info {{/case}} 
+                {{/switch}}">{{this.badge}}</span>
               {{/if}}
             </strong>
           </div>
@@ -68,6 +90,21 @@
       $(function () {
         $('[data-toggle="tooltip"]').tooltip()
       })
+      $("html").on("mouseup", function (e) {
+          var l = $(e.target);
+          if (l[0].className.indexOf("popover") == -1 && l[0].attributes['data-toggle']?.textContent != 'popover') {
+              $(".popover").each(function () {
+                  $(this).popover("hide");
+              });
+          }
+      });
+      $("html").keyup(function (event) {
+          if (event.which === 27) {
+            $(".popover").each(function () {
+                  $(this).popover("hide");
+              });
+          }
+      });
     </script>
   </body>
 </html>
