@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "handlebars": "^4.7.6",
-    "n-readlines": "^1.0.0"
+    "n-readlines": "^1.0.0",
+    "showdown": "^1.9.1"
   }
 }

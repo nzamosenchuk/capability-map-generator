@@ -1,6 +1,7 @@
 const lineByLine = require('n-readlines')
 const hb = require('handlebars')
 const fs = require('fs');
+const showdown = require('showdown')
 
 hb.registerHelper('switch', function(value, options) {
     this.switch_value = value;
@@ -111,6 +112,7 @@ function applyTypographyStylesToRawText(markdownText){
     .replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>')
     .replace(/\*(.*)\*/gim, '<em>$1</em>')
     .replace(/\~(.*)\~/gim, '<del>$1</del>')
+    .replace(/^\> (.*$)/gim, '<div class="alert alert-danger">$1</div>')
     .replace(/!\[(.*?)\]\((.*?)\)/gim, "<img alt='$1' src='$2' />")
     .replace(/\[(.*?)\]\((.*?)\)/gim, "<a href='$2'>$1</a>")
 }
@@ -139,26 +141,41 @@ function extractBadges(jsonObj) {
     }
 }
 
+function writeByTemplate(mapTemaplateFile, model, outputFileName){
+    let temaplateFile = fs.readFileSync(mapTemaplateFile,{ encoding: 'utf8' });
+    let template = hb.compile(temaplateFile);
+    var generatedHtml = template(model);
+
+    fs.writeFile(outputFileName, generatedHtml, function (err) {
+        if (err) return console.log(err);
+        console.log('Generated: ', outputFileName);
+    });
+}
+
+function generateDoc()
+{    	
+    var converter = new showdown.Converter();
+    var html = converter.makeHtml(md);
+}
 
 // ===== converter function =====
 function convert(filename){
-    const liner = new lineByLine(filename)
-    let model = parseMD(liner, {parent: null, child:[], description:"", level:0} , 0)
-    removeParentReference(model)
-    extractBadges(model)
-    let htmlTemaplate = fs.readFileSync('index.template.html',{ encoding: 'utf8' });
+    const sourceMdFileLiner = new lineByLine(filename)
+    let parsedMdMapModel = parseMD(sourceMdFileLiner, {parent: null, child:[], description:"", level:0} , 0)
+    removeParentReference(parsedMdMapModel)
+    extractBadges(parsedMdMapModel)
     
-    var template = hb.compile(htmlTemaplate);
-    var result = template(model);
-    
-    fs.writeFile('model.json', JSON.stringify(model.child), function (err) {
-        if (err) return console.log(err);
-    });
+    writeByTemplate('index.template.html', parsedMdMapModel, 'index.html');
 
-    fs.writeFile('index.html', result, function (err) {
+    let sourceMdFile = fs.readFileSync(filename,{ encoding: 'utf8' });
+    var mdHtml = new showdown.Converter().makeHtml(sourceMdFile);
+    
+    writeByTemplate('index.doc.template.html', {content:mdHtml}, 'doc.html');
+    
+    fs.writeFile('model.json', JSON.stringify(parsedMdMapModel.child), function (err) {
         if (err) return console.log(err);
-        console.log('Generated: index.html');
     });
+    
 }
 
 // ===== actual converter =====
