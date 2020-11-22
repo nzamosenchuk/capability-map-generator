@@ -17,8 +17,8 @@ Install dependencies as usual:
 
 Concerting a single file:
 
-> node convert.js map.md 
+> node convert.js --file map.md --title 'My Capability Map'
 
 or continuosly watching the file and converting on the fly:
 
-> node convert.js map.md --watch
+> node convert.js --file map.md --title 'My Capability Map' --watch

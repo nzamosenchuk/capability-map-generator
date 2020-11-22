@@ -3,6 +3,9 @@ const hb = require('handlebars')
 const fs = require('fs');
 const showdown = require('showdown')
 
+const yargs = require('yargs/yargs')
+const { hideBin } = require('yargs/helpers')
+
 hb.registerHelper('switch', function(value, options) {
     this.switch_value = value;
     return options.fn(this);
@@ -159,12 +162,13 @@ function generateDoc()
 }
 
 // ===== converter function =====
-function convert(filename){
+function convert(filename, title){
     const sourceMdFileLiner = new lineByLine(filename)
     let parsedMdMapModel = parseMD(sourceMdFileLiner, {parent: null, child:[], description:"", level:0} , 0)
     removeParentReference(parsedMdMapModel)
     extractBadges(parsedMdMapModel)
     
+    parsedMdMapModel.title = title
     writeByTemplate('index.template.html', parsedMdMapModel, 'index.html');
 
     let sourceMdFile = fs.readFileSync(filename,{ encoding: 'utf8' });
@@ -179,25 +183,38 @@ function convert(filename){
 }
 
 // ===== actual converter =====
-var appArgs = process.argv.slice(2);
-if (!appArgs || appArgs.length == 0){
-    console.error("Usage: > node convert.js name-of-md-file.md")
+var argv = require('yargs/yargs')(process.argv.slice(2)).argv;
+
+if (!argv.file){
+    console.error("Usage: > node convert.js --file name-of-md-file.md --title 'Title'")
     process.exit(1)
 }
-const filename = appArgs[0]
-convert(filename)
 
-if (appArgs.length>1 && appArgs[1]=='--watch'){
+//var appArgs = process.argv.slice(2);
+
+
+
+
+// if (!appArgs || appArgs.length == 0){
+//     console.error("Usage: > node convert.js name-of-md-file.md")
+//     process.exit(1)
+// }
+
+const filename = argv.file
+const title = argv.title? argv.title : "Capability Map"
+convert(filename, title)
+
+if (argv.watch){
     const fs = require('fs');
 
-fs.watch(filename, { encoding: 'buffer' }, (eventType, filename) => {
-    if (filename) {
-      console.log('rebuilding ... ');
-      try{
-          convert(filename)
-        } catch(err){
-            console.log(err)
+    fs.watch(filename, { encoding: 'buffer' }, (eventType, filename) => {
+        if (filename) {
+        console.log('rebuilding ... ');
+        try{
+            convert(filename, title)
+            } catch(err){
+                console.log(err)
+            }
         }
-    }
-  });
+    });
 }
