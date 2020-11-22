@@ -190,16 +190,6 @@ if (!argv.file){
     process.exit(1)
 }
 
-//var appArgs = process.argv.slice(2);
-
-
-
-
-// if (!appArgs || appArgs.length == 0){
-//     console.error("Usage: > node convert.js name-of-md-file.md")
-//     process.exit(1)
-// }
-
 const filename = argv.file
 const title = argv.title? argv.title : "Capability Map"
 convert(filename, title)
